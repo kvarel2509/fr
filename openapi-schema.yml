@@ -1,0 +1,357 @@
+openapi: 3.0.2
+info:
+  title: 'Сервис уведомлений'
+  version: '1'
+paths:
+  /api/v1/clients/:
+    get:
+      operationId: listClients
+      description: 'Запрос списка клиентов'
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Client'
+          description: 'Список клиентов'
+      tags:
+      - api
+    post:
+      operationId: createClient
+      description: 'Создание нового клиента'
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Client'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Client'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Client'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+          description: 'Созданный клиент'
+      tags:
+      - api
+  /api/v1/clients/{id}/:
+    get:
+      operationId: retrieveClient
+      description: 'Запрос конкретного клиента'
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: 'Идентификатор клиента'
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+          description: 'Конкретный клиент'
+      tags:
+      - api
+    put:
+      operationId: updateClient
+      description: 'Обновление данных о клиенте'
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: 'Идентификатор клиента'
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Client'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Client'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Client'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+          description: 'Конкретный клиент'
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateClient
+      description: 'Обновление данных о клиенте'
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: 'Идентификатор клиента'
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Client'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Client'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Client'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+          description: 'Конкретный клиент'
+      tags:
+      - api
+    delete:
+      operationId: destroyClient
+      description: 'Удалить клиента'
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: 'Идентификатор клиента'
+        schema:
+          type: string
+      responses:
+        '204':
+          description: 'Подтверждение удаления'
+      tags:
+      - api
+  /api/v1/mailings/:
+    get:
+      operationId: listMailings
+      description: 'Запрос списка созданных рассылок'
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Mailing'
+          description: 'Список созданных рассылок'
+      tags:
+      - api
+    post:
+      operationId: createMailing
+      description: 'Запрос на создание новой рассылки'
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Mailing'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Mailing'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Mailing'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mailing'
+          description: 'Данные созданной рассылки'
+      tags:
+      - api
+  /api/v1/mailings/{id}/:
+    get:
+      operationId: retrieveMailing
+      description: 'Запрос данных о конкретной рассылке'
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: 'Идентификатор рассылки'
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mailing'
+          description: 'Данные конкретной рассылки'
+      tags:
+      - api
+    put:
+      operationId: updateMailing
+      description: 'Запрос на обновление данных конкретной рассылки'
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: 'Идентификатор рассылки'
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Mailing'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Mailing'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Mailing'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mailing'
+          description: 'Обновленные данные конкретной рассылки'
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateMailing
+      description: 'Запрос на частичное обновление данных о конкретной рассылке'
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: 'Идентификатор рассылки'
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Mailing'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Mailing'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Mailing'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mailing'
+          description: 'Обновленные данные конкретной рассылки'
+      tags:
+      - api
+    delete:
+      operationId: destroyMailing
+      description: 'Запрос на удаление данных о конкретной рассылке'
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: 'Идентификатор рассылки'
+        schema:
+          type: string
+      responses:
+        '204':
+          description: 'Подтверждение удаления данных о конкретной рассылке'
+      tags:
+      - api
+  /api/v1/mailing-report/:
+    get:
+      operationId: listMailingReports
+      description: 'Запрос на получение отчета по отправленным уведомлениям'
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items: {"response": [{"status": str, "message_count": int}]}
+          description: 'Отчет по отправленным уведомлениям'
+      tags:
+      - api
+  /api/v1/mailing-report/{mailing_id}/:
+    get:
+      operationId: retrieveMailingReport
+      description: 'Запрос на получение отчета по отправленным уведомлениям конкретной рассылки'
+      parameters:
+      - name: mailing_id
+        in: path
+        required: true
+        description: 'Идентификатор рассылки'
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {"response": [{"status": str, "message_count": int}]}
+          description: 'Отчет по отправленным уведомлениям конкретной рассылки'
+      tags:
+      - api
+components:
+  schemas:
+    Client:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        phone:
+          type: string
+          maxLength: 255
+        mobile_operator_code:
+          type: string
+          maxLength: 255
+        tag:
+          type: string
+          maxLength: 255
+        time_zone:
+          type: string
+          maxLength: 255
+      required:
+      - phone
+      - mobile_operator_code
+      - time_zone
+    Mailing:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        start_date:
+          type: string
+          format: date-time
+        message:
+          type: string
+        filters:
+          type: object
+        end_date:
+          type: string
+          format: date-time
+          nullable: true
+        time_interval_start:
+          type: string
+        time_interval_end:
+          type: string
+      required:
+      - start_date
+      - message
