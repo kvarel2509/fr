@@ -1,0 +1,65 @@
+{% extends 'web_ui/base.html' %}
+
+
+{% block content %}
+    {% if mailing_id %}
+        <h1>Отчет по рассылке №{{ mailing_id }}</h1>
+    {% else %}
+        <h1>Общий отчет по рассылкам</h1>
+    {% endif %}
+
+    <table class="statuses">
+        <thead>
+            <tr>
+                <th>Статус</th>
+                <th>Количество</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in report %}
+                <tr class="item">
+                    <td>{{ item.status }}</td>
+                    <td>{{ item.message_count }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="control">
+        <a
+                {% if mailing_id %}
+                    href="{% url 'web_ui:mailing' mailing_id=mailing_id %}"
+                {% else %}
+                    href="{% url 'web_ui:mailings' %}"
+                {% endif %}
+        >
+            <button>Вернуться</button>
+        </a>
+    </div>
+{% endblock %}
+
+
+{% block head %}
+    <style>
+        table.statuses, .statuses td, .statuses th
+        {
+            border: 1px solid black;
+        }
+        .statuses thead
+        {
+            position: sticky;
+            top: 0;
+        }
+        .statuses tbody tr
+        {
+            height: 50px;
+        }
+        .statuses th
+        {
+            border: 1px solid black;
+            background: white;
+            font-size: 1.2em;
+            padding: 10px;
+        }
+
+    </style>
+{% endblock %}

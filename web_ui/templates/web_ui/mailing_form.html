@@ -1,0 +1,21 @@
+{% extends 'web_ui/base.html' %}
+
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <button type="submit">Подтвердить</button>
+        <a
+                {% if object %}
+                    href="{% url 'web_ui:mailing' mailing_id=object.pk %}"
+                {% else %}
+                    href="{% url 'web_ui:mailings' %}"
+                {% endif %}
+        >
+            <button type="button">Отменить</button>
+        </a>
+    </form>
+{% endblock %}

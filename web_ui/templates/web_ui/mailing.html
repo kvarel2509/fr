@@ -1,0 +1,63 @@
+{% extends 'web_ui/base.html' %}
+{% load tags %}
+
+
+
+{% block content %}
+    <h1 class="title">Подробная информация по рассылке №{{ object.pk }}</h1>
+    <table class="mailing">
+        <tr>
+            <th class="start_date">Дата старта</th>
+            <td class="start_date">{{ object.start_date }}</td>
+        </tr>
+        <tr>
+            <th class="message">Сообщение</th>
+            <td class="message">{{ object.message }}</td>
+        </tr>
+        <tr>
+            <th class="filters">Фильтр клиентов</th>
+            <td class="filters">{{ object.filters }}</td>
+        </tr>
+        <tr>
+            <th class="end_date">Дата принудительного завершения</th>
+            <td class="end_date">{{ object.end_date }}</td>
+        </tr>
+        <tr>
+            <th class="time_interval_start">Старт интервала времени приема сообщения</th>
+            <td class="time_interval_start">{{ object.time_interval_start }}</td>
+        </tr>
+        <tr>
+            <th class="time_interval_end">Конец интервала времени приема сообщения</th>
+            <td class="time_interval_end">{{ object.time_interval_end }}</td>
+        </tr>
+    </table>
+    <div class="control">
+        <a href="{% url 'web_ui:mailings' %}"><button>Вернуться</button></a>
+        <a href="{% url 'web_ui:mailing_report' mailing_id=object.pk %}"><button {% if not object.start_date|date_has_expired %}disabled{% endif %}>Отчет</button></a>
+        <a href="{% url 'web_ui:mailing_update' mailing_id=object.pk %}"><button {% if object.start_date|date_has_expired %}disabled{% endif %}>Обновить</button></a>
+        <a href="{% url 'web_ui:mailing_delete' mailing_id=object.pk %}"><button>Удалить</button></a>
+    </div>
+{% endblock %}
+
+
+{% block head %}
+    <style>
+        table.mailing, .mailing td, .mailing th
+        {
+            border: 1px solid black;
+        }
+        .mailing tr
+        {
+            height: 50px;
+        }
+        .mailing th
+        {
+            padding: 0 50px 0 20px;
+            text-align: start;
+        }
+        .mailing td
+        {
+            padding: 0 50px;
+        }
+    </style>
+{% endblock %}
