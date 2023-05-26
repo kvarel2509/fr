@@ -1,3 +1,5 @@
+from drf_yasg import openapi
+from drf_yasg.views import get_schema_view
 from rest_framework import viewsets, views
 
 from clients.repository import ClientRepository
@@ -29,3 +31,14 @@ class MailingReportAPIView(views.APIView):
         reporter = MailingReporter(self.repo)
         report = reporter.get_report(mailing_id)
         return views.Response({'response': report})
+
+
+SchemaView = get_schema_view(
+    openapi.Info(
+        title="Сервис уведомлений",
+        default_version='v1',
+        description="Тестовое задание в компанию ФР",
+        terms_of_service="https://www.google.com/policies/terms/",
+        contact=openapi.Contact(email="kvarel@mail.ru"),
+    ),
+)

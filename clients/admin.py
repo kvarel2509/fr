@@ -1,7 +1,7 @@
 from django.contrib import admin
 
-from clients.forms import ClientAdminForm
-from clients.models import Client
+from .forms import ClientAdminForm
+from .models import Client
 
 
 @admin.register(Client)

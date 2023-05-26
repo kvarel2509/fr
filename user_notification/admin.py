@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from user_notification.models import Subscription, UserSubscription
+from .models import Subscription, UserSubscription
 
 
 @admin.register(Subscription)

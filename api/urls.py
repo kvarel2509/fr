@@ -11,5 +11,6 @@ router.register(r'mailings', views.MailingAPIView, basename='mailings')
 urlpatterns = [
     path('', include(router.urls)),
     path('mailing-report/', views.MailingReportAPIView.as_view()),
-    path('mailing-report/<int:mailing_id>/', views.MailingReportAPIView.as_view())
+    path('mailing-report/<int:mailing_id>/', views.MailingReportAPIView.as_view()),
+    path('docs/', views.SchemaView.with_ui('swagger', cache_timeout=0)),
 ]

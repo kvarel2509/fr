@@ -22,5 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', include('api.urls')),
     path('social_auth/', include('social_django.urls', namespace='social')),
-    path('', include('web_ui.urls'))
+    path('', include('web_ui.urls')),
+    path('', include('django_prometheus.urls')),
 ]
