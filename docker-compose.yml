@@ -8,23 +8,26 @@ services:
     build: .
     command: celery -A main worker -l info
     volumes:
-      - .:/app
+      - .:/fr
     depends_on:
       - redis
+      - main
 
   beat:
     build: .
     command: celery -A main beat -l info
     volumes:
-      - .:/app
+      - .:/fr
     depends_on:
       - redis
+      - main
 
   main:
     build: .
     volumes:
-      - .:/app
+      - .:/fr
     ports:
       - "8000:8000"
+    command: python manage.py runserver 0.0.0.0:8000
     depends_on:
       - redis
